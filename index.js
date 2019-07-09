@@ -109,7 +109,7 @@ function GetRows(FileToSend,colNames,connection) {
         });
 
         //create out file
-        let outFile = fs.createWriteStream(fileName);
+        let outFile = fs.createWriteStream('/tmp/'+fileName);
         outFile.write(colNames);
 
         request.on('row', function(columns) {
@@ -147,7 +147,7 @@ function FtpStep(FileToSend){
         console.log("Sending to FTP."); 
         const { sftpSite, sftpUser, sftpKeyFile, fileName } = FileToSend;
 
-        let readStream = fs.createReadStream(fileName);
+        let readStream = fs.createReadStream('/tmp/'+fileName);
         let sftp = new FTPClient();
         sftp.on('close', (sftpError) => {
         if(sftpError){
