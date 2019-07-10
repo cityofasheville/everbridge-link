@@ -2,9 +2,9 @@ rm deploy.zip 2> /dev/null
 
 7z a -r -tzip deploy.zip *.js sendPermitMsgs/* common/* node_modules/*
 
-aws lambda delete-function --function-name everbridge_link 2> /dev/null
+aws lambda delete-function --function-name everbridge-link 2> /dev/null
 
-aws lambda create-function --function-name everbridge_link \
+aws lambda create-function --function-name everbridge-link \
 --description "Pull two files from database and SFTP to Everbridge" \
 --zip-file fileb://deploy.zip \
 --role role-name \
