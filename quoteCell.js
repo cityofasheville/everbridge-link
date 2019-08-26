@@ -11,4 +11,4 @@ function quoteCell(inStr) {
         return inStr.toString().trim().replace(/\"/g, '""') + ',';
     }
 }
-module.exports = quoteCell;
+exports.quoteCell = quoteCell;

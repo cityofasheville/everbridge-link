@@ -17,7 +17,8 @@ function GetRows(FileToSend, colNames, connection, Request) {
             connection.close();
         });
         //create out file
-        let outFile = fs.createWriteStream('/tmp/' + fileName);
+        // let outFile = fs.createWriteStream('/tmp/' + fileName);
+        let outFile = fs.createWriteStream(fileName);
         outFile.write(colNames);
         request.on('row', function (columns) {
             let aRow = '';

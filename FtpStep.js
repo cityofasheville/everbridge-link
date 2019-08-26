@@ -5,7 +5,8 @@ function FtpStep(FileToSend) {
     return new Promise(function (resolve, reject) {
         console.log("Sending to FTP.");
         // const { sftpSite, sftpUser, sftpKeyFile, fileName } = FileToSend;
-        // let readStream = fs.createReadStream('/tmp/' + fileName);
+        // // let readStream = fs.createReadStream('/tmp/' + fileName);
+        // let readStream = fs.createReadStream(fileName);
         // let sftp = new FTPClient();
         // sftp.on('close', (sftpError) => {
         //     if (sftpError) {

@@ -1,6 +1,7 @@
 const { loadAFile } = require("./loadAFile");
-
 const { Connection, Request }= require('tedious');
+
+require('dotenv').config({path:'./.env'})
 
 const FilesToSend = [
     {

@@ -1,4 +1,4 @@
-const quoteCell = require('./quoteCell');
+const { quoteCell } = require("./quoteCell");
 
 test('empty string returns comma', () => {
   expect(quoteCell(' ')).toBe(',');
