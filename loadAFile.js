@@ -2,12 +2,11 @@ const { GetRows } = require("./GetRows");
 const { quoteCell } = require("./quoteCell");
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-function loadAFile(FileToSend, dbConfig, Connection, Request) {
+function loadAFile(FileToSend, connection, Request) {
     return new Promise(function (resolve, reject) {
         const { tableName, schemaName, sftpSite, sftpUser, sftpKeyFile } = FileToSend;
         let colNames = '';
         console.log('Getting Column Names ' + tableName);
-        const connection = new Connection(dbConfig);
         connection.on('connect', function (err) {
             if (err) {
                 console.log(err);

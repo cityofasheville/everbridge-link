@@ -1,5 +1,5 @@
+const { Connection, Request } = require('tedious');
 const { loadAFile } = require("./loadAFile");
-const { Connection, Request }= require('tedious');
 
 require('dotenv').config({path:'./.env'})
 
@@ -37,10 +37,10 @@ const dbConfig = {
     }
 };
 
-async function Run(){
+async function Run(connection){
     try {
         for (FileToSend of FilesToSend) {
-            await loadAFile(FileToSend, dbConfig, Connection, Request);
+            await loadAFile(FileToSend, connection, Request);
         };
     } catch(err) {
         console.error(err);
@@ -49,7 +49,8 @@ async function Run(){
 // exports.handler = (event, context, callback) => {
 //     Run();
 // }
-Run();
+const connection = new Connection(dbConfig);
+Run(connection);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 process.on('uncaughtException', (err)=>{
