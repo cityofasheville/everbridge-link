@@ -4,13 +4,13 @@ let FTPClient = require('ssh2-sftp-client');
 var fs = require('fs');
 
 // This is so cron can run in subdir
-// console.log('Starting directory: ' + process.cwd());
+// logit('Starting directory: ' + process.cwd());
 // try {
 //   process.chdir('everbridge');
-//   console.log('New directory: ' + process.cwd());
+//   logit('New directory: ' + process.cwd());
 // }
 // catch (err) {
-//   console.log('chdir: ' + err);
+//   logit('chdir: ' + err);
 // }
 
 
@@ -58,7 +58,7 @@ async function Run(){
             await loadAFile(FileToSend);
         };
     } catch(err) {
-        console.error(err);
+        logit(err);
     }
 }
 
@@ -123,7 +123,7 @@ function GetRows(FileToSend,colNames,connection) {
         });
 
         //create out file
-        let outFile = fs.createWriteStream(fileName);
+        let outFile = fs.createWriteStream('tmp/'+fileName);
         outFile.write(colNames);
 
         request.on('row', function(columns) {
@@ -161,16 +161,16 @@ function FtpStep(FileToSend){
         logit("Sending to FTP."); 
         const { sftpSite, sftpUser, sftpKeyFile, fileName } = FileToSend;
 
-        let readStream = fs.createReadStream(fileName);
+        let readStream = fs.createReadStream('tmp/'+fileName);
         let sftp = new FTPClient();
         sftp.on('close', (sftpError) => {
         if(sftpError){
-            console.error(new Error("sftpError"));
+            logit(new Error("sftpError"));
         }
         });
         sftp.on('error', (err) => {
-        console.log("err2",err.level, err.description?err.description:'');
-        console.error(new Error(err));
+        logit("err2",err.level, err.description?err.description:'');
+        logit(new Error(err, FileToSend));
         });
 
         sftp.connect({
@@ -180,12 +180,12 @@ function FtpStep(FileToSend){
         }).then(() => {
         return sftp.put(readStream, "./replace/"+fileName);
         }).then(res => {
-            console.dir("Sent to SFTP", res);
+            logit("Sent to SFTP", res);
             sftp.end();
             resolve(0);
         }).catch(err => {
-        console.log("err3");
-        console.error(err);
+        logit("err3");
+        logit(err);
         sftp.end();
         });
     });
