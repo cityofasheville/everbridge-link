@@ -15,14 +15,12 @@ host=, \
 database=, \
 user=, \
 password=, \
-
 tableName1=, \
 schemaName1=, \
 fileName1=, \
 sftpSite1=, \
 sftpUser1=, \
 sftpKeyFile1=, \
-
 tableName2=, \
 schemaName2=, \
 fileName2=, \

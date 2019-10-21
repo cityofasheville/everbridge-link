@@ -43,7 +43,7 @@ async function Run(connection){
             await loadAFile(FileToSend, connection, Request);
         };
     } catch(err) {
-        console.error(err);
+        logit(err);
     }
 }
 // exports.handler = (event, context, callback) => {
