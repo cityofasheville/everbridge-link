@@ -14,7 +14,7 @@
     "dotenv": "^8.2.0",
     "ssh2-sftp-client": "^2.4.3",
     "tedious": "^5.0.3",
-    "snyk": "^1.316.1"
+    "snyk": "^1.431.3"
   },
   "devDependencies": {},
   "description": "",
